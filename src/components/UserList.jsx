@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { userService } from '../services/userService'
+import UserCard from './UserCard'
 
 function UserList(){
 
@@ -37,7 +38,9 @@ function UserList(){
         <div>
             <h1>User List</h1>
             <ul>
-                {users.map((user) => <li key={user.id}>{user.firstName} {user.lastName}</li>)}
+                {users.map((user) => <li key={user.id}>
+                    <UserCard user={user}/>
+                </li>)}
             </ul>
         </div>
     )
