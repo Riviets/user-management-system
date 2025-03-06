@@ -2,6 +2,7 @@ import { useState } from 'react'
 import UserList from './components/UserList'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import UserDetails from './components/UserDetails'
+import LoginPage from './components/LoginPage'
 
 const router = createBrowserRouter([
   {
@@ -11,6 +12,10 @@ const router = createBrowserRouter([
   {
     path: '/user/:userId',
     element: <UserDetails />,
+  },
+  {
+    path: '/login',
+    element: <LoginPage />,
   }
 ])
 

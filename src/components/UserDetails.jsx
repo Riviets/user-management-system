@@ -18,7 +18,6 @@ function UserDetails(){
         setIsLoading(true)
         try{
             const response = await userService.fetchuserById(userId)
-            console.log(response);
             setUser(response)
         }
         catch(err){
@@ -39,6 +38,7 @@ function UserDetails(){
     return(
         <div>
             <Link to ='/'>Back to the list</Link>
+            <p>{user?.username}</p>
             <p>{user?.firstName} {user?.lastName}</p>
             <p>Age: {user?.age}</p> 
             <p>Email: {user?.email}</p>
