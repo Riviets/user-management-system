@@ -1,21 +1,30 @@
 import { useState } from 'react'
-import UserList from './components/UserList'
+import UserList from './components/user/UserList'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
-import UserDetails from './components/UserDetails'
-import LoginPage from './components/LoginPage'
+import UserDetails from './components/user/UserDetails'
+import LoginPage from './components/auth/LoginPage'
+import ProtectedRoute from './components/utils/ProtectedRoute'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <UserList />,
+    element: (
+        <ProtectedRoute>
+          <UserList />
+        </ProtectedRoute>
+    ),
   },
   {
     path: '/user/:userId',
-    element: <UserDetails />,
+    element: (
+      <ProtectedRoute>
+        <UserDetails />
+      </ProtectedRoute>
+    )
   },
   {
     path: '/login',
-    element: <LoginPage />,
+    element: <LoginPage />
   }
 ])
 

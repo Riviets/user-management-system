@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react'
-import { authService } from '../services/authService'
+import { authService } from '../../services/authService'
+import { useNavigate } from 'react-router-dom'
 
 function LoginPage(){
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState(null)
+    const navigate = useNavigate()
 
     function handleUsernameChange(event){
         setUsername(event.target.value)
@@ -20,6 +22,7 @@ function LoginPage(){
             setError(null)
             const response = await authService.authenticateUser(username, password)
             localStorage.setItem('accessToken', response?.accessToken)
+            navigate('/')
         }
         catch(err){
             setError(err)
