@@ -1,17 +1,15 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 function UserCard({user}){
 
-    function handleViewDetails(){
-        console.log(`detaild button clicked for ${user.firstName}`)
-    }
     return(
         <div>
             {user.firstName} {user.lastName}
             <br />
             {user.age} years, <br />
-            Email: {user.email}
-            <button onClick={handleViewDetails}>View Details</button>
+            Email: {user.email} <br />
+            <Link to={`/user/${user.id}`} >View Details</Link>
         </div>
     )
 }
