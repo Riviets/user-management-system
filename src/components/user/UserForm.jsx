@@ -5,10 +5,12 @@ function UserForm({title, userData, onSubmit}){
     const [user, setUser] = useState(userData)
     const [formErrors, setFormErrors] = useState({})
     const [isSubmit, setIsSubmit] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(()=>{
         setUser(userData)
-    }, [])
+        setIsLoading(false)
+    }, [userData])
 
     useEffect(() => {
         if(isSubmit && Object.keys(formErrors).length === 0){
@@ -68,9 +70,6 @@ function UserForm({title, userData, onSubmit}){
         if (!phone) {
             errors.phone = 'Phone number is required!'
         }
-        else if (!/^\+?\d{10,15}$/.test(phone)) {
-            errors.phone = 'Invalid phone number format!'
-        }
     
         if (!age) {
             errors.age = 'Age is required!'
@@ -82,7 +81,9 @@ function UserForm({title, userData, onSubmit}){
         return errors;
     }
     
-
+    if(isLoading){
+        return <div>Loading...</div>
+    }
     return(
         <div>
             <Link to ='/'>Back to the list</Link>

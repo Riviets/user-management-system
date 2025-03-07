@@ -5,9 +5,8 @@ function UserCard({user}){
 
     return(
         <div>
-            {user.firstName} {user.lastName}
+            {user.firstName} {user.lastName}, {user.age}
             <br />
-            {user.age} years, <br />
             Email: {user.email} <br />
             <Link to={`/user/${user.id}`} >View Details</Link>
         </div>

@@ -48,6 +48,10 @@ function UserDetails(){
             <p>Address: {user.address?.address}, {user.address?.city}, 
                         {user.address?.country}, {user.address?.state} ({user.address?.stateCode}), {user.address?.postalCode}</p>
             {user.image && <img src={user?.image} alt="User profile picture" />}
+
+            <div>
+                <Link to={`/user/edit/${user?.id}`}>Edit</Link>
+            </div>
         </div>
     )
 }

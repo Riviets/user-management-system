@@ -34,4 +34,17 @@ export const userService = {
             throw error
         }
     },
+    editUser: async (id, userData) => {
+        try{
+            const response = await axios.patch(`${API_URL}/users/${id}`, userData,{
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            return response.data
+        }
+        catch(error){
+            throw error
+        }
+    },
 }
