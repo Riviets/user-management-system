@@ -22,4 +22,19 @@ export const authService = {
     logout: () => {
         localStorage.removeItem('accessToken')
     },
+    getCurrentUser: async () => {
+        try {
+            const accessToken = localStorage.getItem('accessToken')
+            const response = await axios.get(`${API_URL}/auth/me`, {
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`
+                }
+            })
+            return response.data
+        }
+        catch (error) {
+            throw error
+        }
+    }
+    
 }

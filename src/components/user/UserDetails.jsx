@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { userService } from '../../services/userService'
 import { useParams } from 'react-router'
 import {Link} from 'react-router-dom'
+import Header from '../layout/Header'
 
 function UserDetails(){
     const [isLoading, setIsLoading] = useState(false)
@@ -37,6 +38,7 @@ function UserDetails(){
     }
     return(
         <div>
+            <Header />
             <Link to ='/'>Back to the list</Link>
             <p>{user?.username}, {user.password}</p>
             <p>{user?.firstName} {user?.lastName}</p>
