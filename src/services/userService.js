@@ -47,4 +47,13 @@ export const userService = {
             throw error
         }
     },
+    deleteUser: async (id) => {
+        try{
+            const response = await axios.delete(`${API_URL}/users/${id}`)
+            return response
+        }
+        catch(error){
+            throw error
+        }
+    }
 }
