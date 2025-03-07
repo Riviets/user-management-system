@@ -18,5 +18,8 @@ export const authService = {
         catch(error){
             throw error
         }
-    }
+    },
+    logout: () => {
+        localStorage.removeItem('accessToken')
+    },
 }

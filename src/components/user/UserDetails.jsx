@@ -38,7 +38,7 @@ function UserDetails(){
     return(
         <div>
             <Link to ='/'>Back to the list</Link>
-            <p>{user?.username}</p>
+            <p>{user?.username}, {user.password}</p>
             <p>{user?.firstName} {user?.lastName}</p>
             <p>Age: {user?.age}</p> 
             <p>Email: {user?.email}</p>
