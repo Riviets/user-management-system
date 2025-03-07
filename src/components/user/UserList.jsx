@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { userService } from '../../services/userService'
 import UserCard from './UserCard'
 import Header from '../layout/Header'
+import {Link} from 'react-router-dom'
 
 function UserList(){
 
@@ -38,7 +39,10 @@ function UserList(){
     return(
         <div>
             <Header />
-            <h1>User List</h1>
+            <div>
+                <h1>User List</h1>
+                <Link to='/user/add'>Add user</Link>
+            </div>
             <ul>
                 {users.map((user) => <li key={user.id}>
                     <UserCard user={user}/>

@@ -21,5 +21,17 @@ export const userService = {
             throw error
         }
     },
-    
+    addUser: async (userData) => {
+        try{
+            const response = await axios.post(`${API_URL}/users/add`, userData, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            return response.data
+        }
+        catch(error){
+            throw error
+        }
+    },
 }

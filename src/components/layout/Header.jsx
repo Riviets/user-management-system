@@ -9,7 +9,6 @@ function Header(){
         async function getCurrentUser(){
             try{
                 const response = await authService.getCurrentUser()
-                console.log(response)
                 setUser(response)
             }
             catch(err){
