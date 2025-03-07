@@ -40,14 +40,14 @@ function UserDetails(){
         <div>
             <Header />
             <Link to ='/'>Back to the list</Link>
-            <p>{user?.username}, {user.password}</p>
+            <p>{user?.username}</p>
             <p>{user?.firstName} {user?.lastName}</p>
             <p>Age: {user?.age}</p> 
             <p>Email: {user?.email}</p>
             <p>Phone number: {user?.phone}</p>
             <p>Address: {user.address?.address}, {user.address?.city}, 
                         {user.address?.country}, {user.address?.state} ({user.address?.stateCode}), {user.address?.postalCode}</p>
-            <img src={user?.image} alt="User profile picture" />
+            {user.image && <img src={user?.image} alt="User profile picture" />}
         </div>
     )
 }

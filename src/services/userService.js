@@ -20,5 +20,6 @@ export const userService = {
         catch(error){
             throw error
         }
-    }
+    },
+    
 }

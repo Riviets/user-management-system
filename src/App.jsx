@@ -4,6 +4,8 @@ import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import UserDetails from './components/user/UserDetails'
 import LoginPage from './components/auth/LoginPage'
 import ProtectedRoute from './components/utils/ProtectedRoute'
+import AddUser from './components/user/AddUser'
+import EditUser from './components/user/EditUser'
 
 const router = createBrowserRouter([
   {
@@ -25,6 +27,22 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <LoginPage />
+  },
+  {
+    path: '/user/add',
+    element: (
+      <ProtectedRoute>
+        <AddUser />
+      </ProtectedRoute>
+    )
+  },
+  {
+    path: 'user/edit/:id',
+    element: (
+      <ProtectedRoute>
+        <EditUser />
+      </ProtectedRoute>
+    )
   }
 ])
 
