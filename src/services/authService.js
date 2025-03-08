@@ -33,6 +33,10 @@ export const authService = {
             return response.data
         }
         catch (error) {
+            if(error.response.status === 401){
+                localStorage.removeItem('accessToken')
+                window.location.reload()
+            }
             throw error
         }
     },
