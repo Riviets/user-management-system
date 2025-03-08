@@ -4,6 +4,10 @@
     @apply border border-gray-500 border-2 rounded-full px-4 py-2 tracking-wide;
 }
 
+.btn{
+    @apply text-xl font-medium py-2 px-4 text-white rounded-lg border-2 cursor-pointer transition duration-300 sm:px-8
+}
+
 .container{
     max-width: 1220px;
     padding: 0 10px;

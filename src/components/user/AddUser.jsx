@@ -1,4 +1,5 @@
 import UserForm from "./UserForm";
+import Header from "../layout/Header";
 import { userService } from "../../services/userService";
 
 function AddUser(){
@@ -14,6 +15,7 @@ function AddUser(){
     }
     return(
         <div>
+            <Header />
             <UserForm title="Add User" userData={userData} onSubmit={handleAddUser}/>
         </div>
     )

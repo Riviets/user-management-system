@@ -37,17 +37,19 @@ function UserList(){
     }
 
     return(
-        <div>
+        <div className='bg-blue-200 min-h-screen'>
             <Header />
-            <div>
-                <h1>User List</h1>
-                <Link to='/user/add'>Add user</Link>
-            </div>
-            <ul>
-                {users.map((user) => <li key={user.id}>
-                    <UserCard user={user}/>
-                </li>)}
-            </ul>
+            <main className='container'>
+                <div className='flex max-w-sm justify-between py-10 items-center mb-5 md:mb-15 md:ml-20'>
+                    <h1 className='text-3xl font-bold '>User List</h1>
+                    <Link className='btn border-green-800 bg-green-500 hover:bg-green-600' to='/user/add'>Add user</Link>
+                </div>
+                <ul className='flex flex-wrap gap-5 md:gap-10 justify-center pb-20'>
+                    {users.map((user) => <li key={user.id}>
+                        <UserCard user={user}/>
+                    </li>)}
+                </ul>
+            </main>
         </div>
     )
 }

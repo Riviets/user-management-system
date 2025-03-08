@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import UserForm from "./UserForm"
+import Header from "../layout/Header"
 import { useParams } from "react-router-dom"
 import { userService } from "../../services/userService"
 
@@ -37,6 +38,7 @@ function EditUser(){
     }
     return(
         <div>
+            <Header />
             <UserForm title="Edit form" userData={user} onSubmit={handleEdit}/>
         </div>
     )

@@ -34,10 +34,9 @@ function Header(){
     }
 
     return(
-        <header className='bg-blue-300 py-3'>
+        <header className='bg-blue-300 py-3 border-b-3 border-b-blue-700 mb-5 md:mb-15'>
           <div className='container flex justify-between items-center gap-4'>
-            <button className='text-xl font-medium bg-red-500 py-2 px-4 text-white rounded-lg
-                                border-red-800 border-2 cursor-pointer hover:bg-red-700 transition duration-300 sm:px-8' 
+            <button className='btn border-red-800 bg-red-500 hover:bg-red-700' 
             onClick={handleLogout}>Log out</button>
                 <div className='flex items-center gap-8'>
                     <p className='font-semibold text-xl'>{user.firstName} {user.lastName} </p>
