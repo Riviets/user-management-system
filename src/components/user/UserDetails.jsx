@@ -60,22 +60,32 @@ function UserDetails(){
         return (<div>An error occured: {error.message}</div>)
     }
     return(
-        <div>
+        <div className='bg-blue-200 min-h-screen'>
             <Header />
-            <Link to ='/'>Back to the list</Link>
-            {isModalOpened && <ModalConfirm isOpened={isModalOpened} message = "delete this user" onConfirm={confirmDelete} onCancel={cancelDelete}/>}
-            <p>{user?.username}</p>
-            <p>{user?.firstName} {user?.lastName}</p>
-            <p>Age: {user?.age}</p> 
-            <p>Email: {user?.email}</p>
-            <p>Phone number: {user?.phone}</p>
-            <p>Address: {user.address?.address}, {user.address?.city}, 
-                        {user.address?.country}, {user.address?.state} ({user.address?.stateCode}), {user.address?.postalCode}</p>
-            {user.image && <img src={user?.image} alt="User profile picture" />}
+            <div className='container'>
+                <Link className='btn border-gray-600 bg-gray-400 hover:bg-gray-500' to ='/'>Back to the list</Link>
+                {isModalOpened && <ModalConfirm isOpened={isModalOpened} message = "delete this user" onConfirm={confirmDelete} onCancel={cancelDelete}/>}
+               <div className='flex flex-col gap-15 border-2 border-gray-600 rounded-md shadow-lg mt-5 md:mt-15 p-10 bg-yellow-200'>
+                    <div className='flex gap-10 items-center'>
+                            {user.image && <img src={user?.image} alt="User profile picture" className='w-24 md:w-44 bg-white rounded-full p-5 border-4 border-gray-600 shadow-xl'/>}
+                            <div className='flex flex-col gap-1'>
+                                <p className='font-extrabold lg:text-4xl text-2xl'>{user?.username}</p>
+                                <p className='lg:text-lg text-sm text-gray-600 font-medium'>{user?.firstName} {user?.lastName}</p>
+                            </div>
+                    </div>
+                    <div className='flex flex-col gap-4'>
+                        <p className='text-md md:text-xl font-medium'>Age: {user?.age}</p> 
+                        <p className='text-md md:text-xl font-medium'>Email: {user?.email}</p>
+                        <p className='text-md md:text-xl font-medium'>Phone number: {user?.phone}</p>
+                        <p className='text-md md:text-xl font-medium'>Address: {user.address?.address}, {user.address?.city}, 
+                                    {user.address?.country}, {user.address?.state} ({user.address?.stateCode}), {user.address?.postalCode}</p>
 
-            <div>
-                <Link to={`/user/edit/${user?.id}`}>Edit</Link>
-                <button onClick={()=>handleDelete(user.id)}>Delete</button>
+                        <div className='flex gap-6 justify-between sm:justify-start mt-4'>
+                            <Link className='btn border-blue-800 bg-blue-500 hover:bg-blue-700' to={`/user/edit/${user?.id}`}>Edit</Link>
+                            <button className='btn border-red-800 bg-red-500 hover:bg-red-700' onClick={()=>handleDelete(user.id)}>Delete</button>
+                        </div>
+                    </div>
+               </div>
             </div>
         </div>
     )
