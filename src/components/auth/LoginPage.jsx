@@ -73,26 +73,26 @@ function LoginPage(){
                 </div>
                 <div className='px-8 py-20 w-full'>
                     <p className='text-3xl font-bold mb-5 text-center'>Login</p>
-                    {authError && <p>{authError.message}</p>}
+                    {authError && <p className='text-red-600'>{authError.message}</p>}
                     <form onSubmit={handleSubmit}>
                         <div className='flex flex-col gap-8'>
                             <div>
                                 <div className='flex flex-col gap-2'>
                                     <label className='text-xl font-medium ml-1' htmlFor="username">Username:</label>
-                                    <input className='border border-gray-500 border-2 rounded-full px-4 py-2 tracking-wide' id='username' type="text" name='username'
+                                    <input className='input-field' id='username' type="text" name='username'
                                         placeholder='Enter your username'
                                         value={formValues.username} onChange={handleChange}/>
                                 </div>
-                                {formErrors.username && <p>{formErrors.username}</p>}
+                                {formErrors.username && <p className='text-red-600'>{formErrors.username}</p>}
                             </div>
                             <div className='mb-10'>
                                 <div className='flex flex-col gap-2'>
                                     <label className='text-xl font-medium ml-1' htmlFor="password">Password:</label>
-                                    <input className='border border-gray-500 border-2 rounded-full px-4 py-2 tracking-wide' id='password' type="password" name='password'
+                                    <input className='input-field' id='password' type="password" name='password'
                                         placeholder='Enter your password'
                                         value={formValues.password} onChange={handleChange}/>
                                 </div>
-                                {formErrors.password && <p>{formErrors.password}</p>}
+                                {formErrors.password && <p className='text-red-600'>{formErrors.password}</p>}
                             </div>
                         </div>
                         <div className='flex justify-center'>

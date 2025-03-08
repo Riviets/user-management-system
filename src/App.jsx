@@ -6,6 +6,7 @@ import LoginPage from './components/auth/LoginPage'
 import ProtectedRoute from './components/utils/ProtectedRoute'
 import AddUser from './components/user/AddUser'
 import EditUser from './components/user/EditUser'
+import './index.css'
 
 const router = createBrowserRouter([
   {
