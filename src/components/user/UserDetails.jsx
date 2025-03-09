@@ -4,6 +4,7 @@ import { useParams } from 'react-router'
 import {Link} from 'react-router-dom'
 import Header from '../layout/Header'
 import ModalConfirm from '../layout/ModalConfirm'
+import { useNavigate } from 'react-router-dom'
 
 function UserDetails(){
     const [isLoading, setIsLoading] = useState(false)
@@ -13,6 +14,7 @@ function UserDetails(){
     const {userId} = params    
     const [isModalOpened, setIsModalOpened] = useState(false)
     const [selectedUserId, setSelectedUserId] = useState(null)
+    const navigate = useNavigate()
 
     useEffect(()=>{
         fetchUser()
@@ -40,7 +42,9 @@ function UserDetails(){
     async function confirmDelete(){
         try{
             const response = await userService.deleteUser(selectedUserId)
-            console.log(response.status);
+            console.log(`Server returned status ${response.status} for user id ${userId}`);
+            setIsModalOpened(false)
+            navigate('/')
         }
         catch(error){
             console.log(error); 
@@ -64,7 +68,6 @@ function UserDetails(){
             <Header />
             <div className='container'>
                 <Link className='btn border-gray-600 bg-gray-400 hover:bg-gray-500' to ='/'>Back to the list</Link>
-                {isModalOpened && <ModalConfirm isOpened={isModalOpened} message = "delete this user" onConfirm={confirmDelete} onCancel={cancelDelete}/>}
                <div className='flex flex-col gap-15 border-2 border-gray-600 rounded-md shadow-lg mt-5 md:mt-15 p-10 bg-yellow-200'>
                     <div className='flex gap-10 items-center'>
                             {user.image && <img src={user?.image} alt="User profile picture" className='w-24 md:w-44 bg-white rounded-full p-5 border-4 border-gray-600 shadow-xl'/>}
@@ -87,6 +90,7 @@ function UserDetails(){
                     </div>
                </div>
             </div>
+            {isModalOpened && <ModalConfirm isOpened={isModalOpened} message = "delete this user" onConfirm={confirmDelete} onCancel={cancelDelete}/>}
         </div>
     )
 }

@@ -1,9 +1,11 @@
 import {useState, useEffect} from 'react'
 import {authService} from '../../services/authService'
+import ModalConfirm from './ModalConfirm'
 
 function Header(){
     const [error, setError] = useState(null)
     const [user, setUser] = useState({})
+    const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false)
 
     useEffect(()=>{
         async function getCurrentUser(){
@@ -20,6 +22,10 @@ function Header(){
     }, [])
 
     function handleLogout(){
+        setIsLogoutModalOpen(true)
+    }
+    
+    function confirmLogout(){
         try{
             authService.logout()
             window.location.reload()
@@ -27,6 +33,10 @@ function Header(){
         catch(err){
             setError(err)
         }
+    }
+
+    function cancelLogout(){
+        setIsLogoutModalOpen(false)
     }
 
     if(error){
@@ -43,6 +53,7 @@ function Header(){
                     <img className='bg-white p-3 rounded-full w-20 border-3 border-gray-600 shadow-xl hidden sm:flex' src={user.image} alt="Profile image" />
                 </div>
           </div>
+          {isLogoutModalOpen && <ModalConfirm isOpened={isLogoutModalOpen} message={'logout'} onConfirm={confirmLogout} onCancel={cancelLogout}/>}
         </header>
     )
 }

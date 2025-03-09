@@ -5,7 +5,7 @@
 }
 
 .btn{
-    @apply text-xl font-medium py-2 px-4 text-white rounded-lg border-2 cursor-pointer transition duration-300 sm:px-8
+    @apply text-xl font-semibold py-2 px-4 text-white rounded-lg border-2 cursor-pointer transition duration-300 sm:px-8
 }
 
 .container{
