@@ -68,8 +68,8 @@ function UserDetails(){
             <Header />
             <div className='container'>
                 <Link className='btn border-gray-600 bg-gray-400 hover:bg-gray-500' to ='/'>Back to the list</Link>
-               <div className='flex flex-col gap-15 border-2 border-gray-600 rounded-md shadow-lg mt-5 md:mt-15 p-10 bg-yellow-200'>
-                    <div className='flex gap-10 items-center'>
+               <div className='flex flex-col gap-15 border-2 border-gray-600 rounded-md shadow-lg mt-5 md:mt-15 p-5 md:p-10 bg-yellow-200 mb-10'>
+                    <div className='flex gap-3 md:gap-10 items-center'>
                             {user.image && <img src={user?.image} alt="User profile picture" className='w-24 md:w-44 bg-white rounded-full p-5 border-4 border-gray-600 shadow-xl'/>}
                             <div className='flex flex-col gap-1'>
                                 <p className='font-extrabold lg:text-4xl text-2xl'>{user?.username}</p>

@@ -23,9 +23,9 @@ function EditUser(){
         getUserInfo()
     }, [])
 
-    async function handleEdit(){
+    async function handleEdit(userData){
         try{
-            const response = await userService.editUser(id)
+            const response = await userService.editUser(id, userData)
             console.log(response);
         }
         catch(error){
