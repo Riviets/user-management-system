@@ -3,6 +3,7 @@ import { userService } from '../../services/userService'
 import UserCard from './UserCard'
 import Header from '../layout/Header'
 import {Link} from 'react-router-dom'
+import Spinner from '../utils/Spinner'
 
 function UserList(){
 
@@ -29,7 +30,7 @@ function UserList(){
     }
 
     if(isLoading){
-        return (<div>Loading...</div>)
+        return (<div className='flex items-center justify-center min-h-screen'><Spinner /></div>)
     }
 
     if(error){

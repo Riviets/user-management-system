@@ -1,5 +1,6 @@
 import { use, useEffect, useState } from "react";
 import {Link} from 'react-router-dom'
+import Spinner from "../utils/Spinner";
 
 function UserForm({title, userData, onSubmit}){
     const [user, setUser] = useState(userData)
@@ -83,7 +84,7 @@ function UserForm({title, userData, onSubmit}){
     }
     
     if(isLoading){
-        return <div>Loading...</div>
+        return <div className="flex items-center justify-center min-h-screen"><Spinner /></div>
     }
     return(
         <div className="container">

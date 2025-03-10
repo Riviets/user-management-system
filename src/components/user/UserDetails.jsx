@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom'
 import Header from '../layout/Header'
 import ModalConfirm from '../layout/ModalConfirm'
 import { useNavigate } from 'react-router-dom'
+import Spinner from '../utils/Spinner'
 
 function UserDetails(){
     const [isLoading, setIsLoading] = useState(false)
@@ -57,7 +58,7 @@ function UserDetails(){
     }
 
     if(isLoading){
-        return (<div>Loading...</div>)
+        return (<div className='flex items-center justify-center min-h-screen'><Spinner /></div>)
     }
 
     if(error){
