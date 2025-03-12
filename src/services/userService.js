@@ -12,7 +12,7 @@ export const userService = {
             throw error
         }
     },
-    fetchuserById: async (userId) => {
+    fetchUserById: async (userId) => {
         try{
             const response = await axios.get(`${API_URL}/users/${userId}`)
             return response.data
@@ -50,6 +50,15 @@ export const userService = {
     deleteUser: async (id) => {
         try{
             const response = await axios.delete(`${API_URL}/users/${id}`)
+            return response
+        }
+        catch(error){
+            throw error
+        }
+    },
+    searchUsers: async (query) => {
+        try{
+            const response = await axios.get(`${API_URL}/users/search?q=${query}`)
             return response
         }
         catch(error){

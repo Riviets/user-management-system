@@ -13,7 +13,7 @@ function EditUser(){
     useEffect(()=>{
         async function getUserInfo(){
             try{
-                const response = await userService.fetchuserById(id)
+                const response = await userService.fetchUserById(id)
                 setUser(response)
             }
             catch(error){

@@ -6,6 +6,7 @@ import Header from '../layout/Header'
 import ModalConfirm from '../layout/ModalConfirm'
 import { useNavigate } from 'react-router-dom'
 import Spinner from '../utils/Spinner'
+import useFetch from '../hooks/useFetch'
 
 function UserDetails(){
     const [isLoading, setIsLoading] = useState(false)
@@ -24,7 +25,7 @@ function UserDetails(){
     async function fetchUser(){
         setIsLoading(true)
         try{
-            const response = await userService.fetchuserById(userId)
+            const response = await userService.fetchUserById(userId)
             setUser(response)
         }
         catch(err){

@@ -1,32 +1,16 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useRef} from 'react'
 import { userService } from '../../services/userService'
 import UserCard from './UserCard'
 import Header from '../layout/Header'
 import {Link} from 'react-router-dom'
 import Spinner from '../utils/Spinner'
+import useFetch from '../hooks/useFetch'
+import UserSearch from './UserSearch'
 
 function UserList(){
 
-    const [error, setError] = useState(null)
-    const [isLoading, setIsLoading] = useState(false)
-    const [users, setUsers] = useState([])
-
-    useEffect(()=>{
-        async function fetchUsers(){
-            setIsLoading(true)
-            try{
-                const response = await userService.fetchUsers()
-                setUsers(response.users)
-            }
-            catch(err){
-                setError(err)
-            }
-            finally{
-                setIsLoading(false)
-            }
-        }
-        fetchUsers()
-    }, [])
+    const {data: usersList, isLoading, error} = useFetch(userService.fetchUsers)
+    const [foundUsers, setFoundUsers] = useState(null)
 
 
     if(isLoading){
@@ -41,15 +25,36 @@ function UserList(){
         <div className='bg-blue-200 min-h-screen'>
             <Header />
             <main className='container'>
-                <div className='flex max-w-sm justify-between py-10 items-center mb-5 md:mb-15 md:ml-20'>
-                    <h1 className='text-3xl font-bold '>User List</h1>
-                    <Link className='btn border-green-800 bg-green-500 hover:bg-green-600' to='/user/add'>Add user</Link>
+                <div className='flex flex-col gap-8'>
+                   <div className='flex items-center gap-14'>
+                        <h1 className='text-3xl font-bold '>User List</h1>
+                        <Link className='btn border-green-800 bg-green-500 hover:bg-green-600' to='/user/add'>Add user</Link>
+                   </div>
+                   <UserSearch setFoundUsers={setFoundUsers}/>
                 </div>
-                <ul className='flex flex-wrap gap-5 md:gap-10 justify-center pb-20'>
-                    {users.map((user) => <li key={user.id}>
-                        <UserCard user={user}/>
-                    </li>)}
-                </ul>
+               
+               {foundUsers ? 
+                (
+                    <div>
+                        <p className='text-2xl font-bold mb-10'>Search results:</p>
+                        <ul className='flex flex-wrap gap-5 md:gap-10 justify-center pb-20'>
+                            {
+                                foundUsers.map((user)=> <li key={user.id}>
+                                    <UserCard user={user}/>
+                                </li>)
+                            }
+                        </ul>
+                    </div>
+                )
+                :
+                (
+                    <ul className='flex flex-wrap gap-5 md:gap-10 justify-center pb-20'>
+                        {usersList?.users.map((user) => <li key={user.id}>
+                            <UserCard user={user}/>
+                        </li>)}
+                    </ul>
+                ) }
+                
             </main>
         </div>
     )
