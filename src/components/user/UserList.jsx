@@ -12,22 +12,22 @@ function UserList(){
     const [users, setUsers] = useState([])
 
     useEffect(()=>{
+        async function fetchUsers(){
+            setIsLoading(true)
+            try{
+                const response = await userService.fetchUsers()
+                setUsers(response.users)
+            }
+            catch(err){
+                setError(err)
+            }
+            finally{
+                setIsLoading(false)
+            }
+        }
         fetchUsers()
     }, [])
 
-    async function fetchUsers(){
-        setIsLoading(true)
-        try{
-            const response = await userService.fetchUsers()
-            setUsers(response.users)
-        }
-        catch(err){
-            setError(err)
-        }
-        finally{
-            setIsLoading(false)
-        }
-    }
 
     if(isLoading){
         return (<div className='flex items-center justify-center min-h-screen'><Spinner /></div>)

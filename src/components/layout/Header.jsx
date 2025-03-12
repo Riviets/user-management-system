@@ -2,29 +2,12 @@ import {useState, useEffect} from 'react'
 import {authService} from '../../services/authService'
 import ModalConfirm from './ModalConfirm'
 import Spinner from '../utils/Spinner'
+import useFetch from '../hooks/useFetch'
+
 
 function Header(){
-    const [error, setError] = useState(null)
-    const [user, setUser] = useState({})
+    const {data: user, isLoading, error} = useFetch(authService.getCurrentUser)
     const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false)
-    const [isLoading, setIsLoading] = useState(false)
-
-    useEffect(()=>{
-        async function getCurrentUser(){
-            try{
-                setIsLoading(true)
-                const response = await authService.getCurrentUser()
-                setUser(response)
-                setIsLoading(false)
-            }
-            catch(err){
-                console.error('Error fetching user:', error.response?.data || error.message)
-                setError(err)
-            }
-        }
-
-        getCurrentUser()
-    }, [])
 
     function handleLogout(){
         setIsLogoutModalOpen(true)
