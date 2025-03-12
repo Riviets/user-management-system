@@ -25,6 +25,11 @@ function UserSearch({setFoundUsers}){
         }
     }
 
+    function handleBack(){
+        setFoundUsers(null)
+        setQuery('')
+    }
+
     if(isLoading) return <div className='flex items-center justify-center min-h-screen'><Spinner /></div>
 
     if(error) return <div>An error occured: {error.message}</div>
@@ -35,6 +40,7 @@ function UserSearch({setFoundUsers}){
             <div className='flex gap-2'>
                 <input value={query} onChange={handleChange} className='input-field font-medium text-md' type="text"/>
                 <button onClick={handleSearch} className='btn bg-blue-500 hover:bg-blue-700 border-blue-800'>Search</button>
+                <button onClick={handleBack} className='btn border-gray-600 bg-gray-400 hover:bg-gray-500'>Back</button>
             </div>
         </div>
     )
