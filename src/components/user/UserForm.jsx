@@ -1,5 +1,6 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {Link} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import Spinner from "../utils/Spinner";
 
 function UserForm({title, userData, onSubmit}){
@@ -7,6 +8,7 @@ function UserForm({title, userData, onSubmit}){
     const [formErrors, setFormErrors] = useState({})
     const [isSubmit, setIsSubmit] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
+    const navigate = useNavigate()
 
     useEffect(()=>{
         setUser(userData)
@@ -88,7 +90,7 @@ function UserForm({title, userData, onSubmit}){
     }
     return(
         <div className="container">
-            <Link className="btn border-gray-600 bg-gray-400 hover:bg-gray-500" to ='/'>Back to the list</Link>
+            <button onClick={() => {navigate(-1)}} className="btn border-gray-600 bg-gray-400 hover:bg-gray-500" >Go back</button>
             <div className="mt-5 md:mt-10 bg-yellow-200 max-w-fit mx-auto px-20 py-10 md:px-10 md:py-15 rounded-lg border-2 border-gray-600 shadow-md mb-10">
                 <h2 className="text-center mb-10 text-3xl md:text-4xl font-extrabold">{title}</h2>
                 <form className="flex flex-col items-center gap-4 md:gap-6" onSubmit={handleSubmit}>

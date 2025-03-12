@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 
-export default function useFetch(fetchFunction){
+export default function useFetch(fetchFunction, params=[]){
     const [data, setData] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
@@ -8,7 +8,7 @@ export default function useFetch(fetchFunction){
     async function fetchData(){
         try{
             setIsLoading(true)
-            const response = await fetchFunction()
+            const response = await fetchFunction(...params)
             setData(response)
         }
         catch(err){

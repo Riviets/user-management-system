@@ -6,7 +6,6 @@ import Header from '../layout/Header'
 import ModalConfirm from '../layout/ModalConfirm'
 import { useNavigate } from 'react-router-dom'
 import Spinner from '../utils/Spinner'
-import useFetch from '../hooks/useFetch'
 
 function UserDetails(){
     const [isLoading, setIsLoading] = useState(false)
@@ -58,18 +57,15 @@ function UserDetails(){
         console.log('canceled');
     }
 
-    if(isLoading){
-        return (<div className='flex items-center justify-center min-h-screen'><Spinner /></div>)
-    }
+    if(isLoading) return (<div className='flex items-center justify-center min-h-screen'><Spinner /></div>)
 
-    if(error){
-        return (<div>An error occured: {error.message}</div>)
-    }
+    if(error) return (<div>An error occured: {error.message}</div>)
+    
     return(
         <div className='bg-blue-200 min-h-screen'>
             <Header />
             <div className='container'>
-                <Link className='btn border-gray-600 bg-gray-400 hover:bg-gray-500' to ='/'>Back to the list</Link>
+                <button onClick={() => {navigate(-1)}} className='btn border-gray-600 bg-gray-400 hover:bg-gray-500'>Go back</button>
                <div className='flex flex-col gap-15 border-2 border-gray-600 rounded-md shadow-lg mt-5 md:mt-15 p-5 md:p-10 bg-yellow-200 mb-10'>
                     <div className='flex gap-3 md:gap-10 items-center'>
                             {user.image && <img src={user?.image} alt="User profile picture" className='w-24 md:w-44 bg-white rounded-full p-5 border-4 border-gray-600 shadow-xl'/>}

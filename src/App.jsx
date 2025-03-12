@@ -6,6 +6,7 @@ import LoginPage from './components/auth/LoginPage'
 import ProtectedRoute from './components/utils/ProtectedRoute'
 import AddUser from './components/user/AddUser'
 import EditUser from './components/user/EditUser'
+import NoMatch from './components/NoMatch'
 import './index.css'
 
 const router = createBrowserRouter([
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
         <EditUser />
       </ProtectedRoute>
     )
+  },
+  {
+    path: '*',
+    element: <NoMatch />
   }
 ])
 
