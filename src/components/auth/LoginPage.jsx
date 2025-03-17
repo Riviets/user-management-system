@@ -6,7 +6,7 @@ function LoginPage(){
     const initialValues = {username: '', password: ''}
     const [formValues, setFormValues] = useState(initialValues)
     const [formErrors, setFormErrors] = useState({})
-    const [authError, setAuthError] = useState(null)
+    const [authError, setAuthError] = useState('')
     const [isSubmit, setIsSubmit] = useState(false)
     const navigate = useNavigate()
 
@@ -19,7 +19,7 @@ function LoginPage(){
         e.preventDefault()
         const errors = validate(formValues)
         setFormErrors(errors)
-        setAuthError(null)
+        setAuthError('')
         setIsSubmit(true)
     }
 
@@ -32,7 +32,9 @@ function LoginPage(){
                     navigate('/')
                 }
                 catch(err){
-                    setAuthError(err)
+                    if(err.response && err.response.status === 400){
+                        setAuthError('Wrong email or password!')
+                    }
                     setIsSubmit(false)
                 }
             }
@@ -73,7 +75,6 @@ function LoginPage(){
                 </div>
                 <div className='px-8 py-20 w-full'>
                     <p className='text-3xl font-bold mb-5 text-center'>Login</p>
-                    {authError && <p className='text-red-600'>{authError.message}</p>}
                     <form onSubmit={handleSubmit}>
                         <div className='flex flex-col gap-8'>
                             <div>
@@ -85,7 +86,7 @@ function LoginPage(){
                                 </div>
                                 {formErrors.username && <p className='text-red-600'>{formErrors.username}</p>}
                             </div>
-                            <div className='mb-10'>
+                            <div>
                                 <div className='flex flex-col gap-2'>
                                     <label className='text-xl font-medium ml-1' htmlFor="password">Password:</label>
                                     <input className='input-field' id='password' type="password" name='password'
@@ -94,9 +95,10 @@ function LoginPage(){
                                 </div>
                                 {formErrors.password && <p className='text-red-600'>{formErrors.password}</p>}
                             </div>
+                        {authError && <p className='text-red-600'>{authError}</p>}
                         </div>
                         <div className='flex justify-center'>
-                            <button type='submit' className='font-semibold text-white bg-purple-600 px-8 text-2xl hover:scale-110 hover:bg-purple-700
+                            <button type='submit' className='font-semibold text-white bg-purple-600 px-8 text-2xl hover:scale-110 hover:bg-purple-700 mt-8
                                                              rounded-3xl py-1 border border-purple-800 border-3 cursor-pointer transition duration-300'>
                                     Submit</button>
                         </div>
